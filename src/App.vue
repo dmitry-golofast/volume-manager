@@ -46,21 +46,12 @@ const validationSchema = toTypedSchema(
       .trim()
       .min(1, t('validation.nameRequired'))
       .regex(volumeNamePattern, t('validation.namePattern')),
-    type: z.enum(['block', 'file'], {
-      required_error: t('validation.typeRequired'),
-      invalid_type_error: t('validation.typeRequired'),
-    }),
+    type: z.enum(['block', 'file'], t('validation.typeRequired')),
     size: z
-      .number({
-        required_error: t('validation.sizeRequired'),
-        invalid_type_error: t('validation.sizeInvalid'),
-      })
+      .number(t('validation.sizeInvalid'))
       .positive(t('validation.sizePositive'))
       .max(999999, t('validation.sizeTooLarge')),
-    unit: z.enum(['KB', 'MB', 'GB', 'KiB', 'MiB', 'GiB'], {
-      required_error: t('validation.unitRequired'),
-      invalid_type_error: t('validation.unitRequired'),
-    }),
+    unit: z.enum(['KB', 'MB', 'GB', 'KiB', 'MiB', 'GiB'], t('validation.unitRequired')),
   }),
 );
 
